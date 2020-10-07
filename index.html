@@ -17,15 +17,18 @@
 </style>
   <!-- vanilla JS code will sit below -->
   <script>
+    // attaches screen variable to HTML Canvas through id
     const screen = document.getElementById("screenDisplay");
     const screenCTX = screenDisplay.getContext("2d");
 
+    // creates the background
     function newCanvas() {
-    screenCTX.fillStyle = "black";
+    screenCTX.fillStyle = "darkgray";
     screenCTX.strokestyle = "black";
     screenCTX.fillRect(0, 0, screenDisplay.width, screenDisplay.height);
     screenCTX.strokeRect(0, 0, screenDisplay.width, screenDisplay.height);
     };
+
     // the snake is an array of objects, depicted as cells on the canvas, the tuples are x and y coordinates
     const snake = [
       { x: 200, y: 200 },
@@ -35,6 +38,8 @@
       { x: 160, y: 200 }
     ];
 
+    // creates a snake, each chonk x & y are coordinates of where the block location is respectively.
+    // the 10, 10 in 3rd and 4th places are the diameter of each cell of the snake
     function drawSnekChonk (chonk) {
       screenCTX.fillStyle = 'green';
       screenCTX.strokestyle = 'lightgreen';
@@ -42,7 +47,7 @@
       screenCTX.strokeRect(chonk.x, chonk.y, 10, 10)
       console.log(chonk.x)
     }
-
+    // loops over snake and then utilizes draw function to create chonks(cells)
     function drawSnek () {
       snake.forEach(drawSnekChonk);
     }
