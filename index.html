@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> el sneko </head>
-  <body>
 
+<head> el sneko </head>
 
-    <script>
+<body>
+  <!-- canvas is for rendering images -->
+  <canvas id="screenDisplay" width="500" height="550"></canvas>
+<style>
+  #screenDisplay {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    /* transform: translate(-50%, -50%); */
+  }
 
-    </script>
-  </body>
+</style>
+  <!-- vanilla JS code will sit below -->
+  <script>
+    const screen = document.getElementById("screenDisplay");
+    const screenCTX = screenDisplay.getContext("2d");
+
+    function newCanvas() {
+    screenCTX.fillStyle = "black";
+    screenCTX.strokestyle = "black";
+    screenCTX.fillRect(0, 0, screenDisplay.width, screenDisplay.height);
+    screenCTX.strokeRect(0, 0, screenDisplay.width, screenDisplay.height);
+    };
+    // the snake is an array of objects, depicted as cells on the canvas, the tuples are x and y coordinates
+    const snake = [
+      { x: 200, y: 200 },
+      { x: 190, y: 200 },
+      { x: 180, y: 200 },
+      { x: 170, y: 200 },
+      { x: 160, y: 200 }
+    ];
+
+    function drawSnekChonk (chonk) {
+      screenCTX.fillStyle = 'green';
+      screenCTX.strokestyle = 'lightgreen';
+      screenCTX.fillRect(chonk.x, chonk.y, 10, 10);
+      screenCTX.strokeRect(chonk.x, chonk.y, 10, 10)
+      console.log(chonk.x)
+    }
+
+    function drawSnek () {
+      snake.forEach(drawSnekChonk);
+    }
+    function main() {
+      newCanvas();
+      drawSnek();
+    }
+    // start the game!
+  main();
+
+  </script>
+</body>
 
 </html>
