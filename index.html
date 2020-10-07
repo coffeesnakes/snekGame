@@ -43,7 +43,15 @@
       console.log(chonk.x)
     }
 
-
+    function drawSnek () {
+      snake.forEach(drawSnekChonk);
+    }
+    function main() {
+      newCanvas();
+      drawSnek();
+    }
+    // start the game!
+  main();
 
   </script>
 </body>
