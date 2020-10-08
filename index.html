@@ -87,21 +87,7 @@
     }
 
     // creates new head and removes tail, this is how parts 'shift' for movement
-    function move_snake() {
-      //generates new head
-      const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-      // adds the head into position
-      snake.unshift(head);
-      const hasEatenFood = (snake[0].x === food_x && snake[0].y === food_y);
-      if (hasEatenFood) {
-        //increase score
-        score += 10
-        document.getElementById('score').innerHTML = score;
-        generateFood();
-      } else {
-        snake.pop();
-      }
-    }
+
 
     // function to control direction with arrow keys via keyCodes
     function direction(event) {
