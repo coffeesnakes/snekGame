@@ -40,6 +40,8 @@
       { x: 160, y: 200 }
     ];
   main();
+
+  document.addEventListener("keydown", direction);
     // creates a snake, each chonk x & y are coordinates of where the block location is respectively.
     // the 10, 10 in 3rd and 4th places are the diameter of each cell of the snake
     function drawSnekChonk (chonk) {
@@ -59,7 +61,7 @@
         move_snake();
         drawSnek();
         main();
-      }, 1000)
+      }, 100)
     }
 
   // creates new head and removes tail, this is how parts 'shift' for movement
@@ -69,17 +71,40 @@
     snake.pop();
   }
 
-  setTimeout(function onTick(){
-    newCanvas();
-    move_snake();
-    drawSnek();
-  }, 100);
-    setTimeout(function onTick() {
-        newCanvas();
-        move_snake();
-        drawSnek();
-      }, 100);
-      drawSnek();
+  // function to control direction with arrow keys via keyCodes
+  function direction (event) {
+    const leftKey = 37;
+    const rightKey = 39;
+    const upKey = 38;
+    const downKey = 40;
+
+    // each key has a keycode when pressed.
+    const keyPressed = event.keyCode;
+
+    //evaluates to true if condition is met, this is for conflict check
+    const goingUp = dy === -10;
+    const goingDown = dy === 10;
+    const goingRight = dx === 10;
+    const goingLeft = dx === -10;
+
+    //checks for directional conflict IE: if going up already, can't go down
+    if (keyPressed === leftKey && !goingRight) {
+      dx = -10;
+      dy = 0;
+    }
+    if (keyPressed === upKey && !goingDown) {
+      dx = 0;
+      dy = -10;
+    }
+    if (keyPressed === rightKey && !goingLeft) {
+      dx = 10;
+      dy = 0;
+    }
+    if (keyPressed === downKey && !goingUp) {
+      dx = 0;
+      dy = 10;
+    }
+  };
 
   </script>
 </body>
