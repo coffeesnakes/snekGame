@@ -28,6 +28,8 @@
     screenCTX.fillRect(0, 0, screenDisplay.width, screenDisplay.height);
     screenCTX.strokeRect(0, 0, screenDisplay.width, screenDisplay.height);
     };
+    let dx = 10;
+    let dy = 0;
 
     // the snake is an array of objects, depicted as cells on the canvas, the tuples are x and y coordinates
     const snake = [
@@ -37,7 +39,7 @@
       { x: 170, y: 200 },
       { x: 160, y: 200 }
     ];
-
+  main();
     // creates a snake, each chonk x & y are coordinates of where the block location is respectively.
     // the 10, 10 in 3rd and 4th places are the diameter of each cell of the snake
     function drawSnekChonk (chonk) {
@@ -52,11 +54,32 @@
       snake.forEach(drawSnekChonk);
     }
     function main() {
-      newCanvas();
-      drawSnek();
+       setTimeout(function onTick() {
+        newCanvas();
+        move_snake();
+        drawSnek();
+        main();
+      }, 1000)
     }
-    // start the game!
-  main();
+
+  // creates new head and removes tail, this is how parts 'shift' for movement
+  function move_snake() {
+    const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+    snake.unshift(head);
+    snake.pop();
+  }
+
+  setTimeout(function onTick(){
+    newCanvas();
+    move_snake();
+    drawSnek();
+  }, 100);
+    setTimeout(function onTick() {
+        newCanvas();
+        move_snake();
+        drawSnek();
+      }, 100);
+      drawSnek();
 
   </script>
 </body>
