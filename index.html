@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head> </head>
-<h1 style="text-align: center; color:chocolate"> el sneko </h1>
+<h1 style="text-align: center; color:green"> el sneko </h1>
 
 <body>
-  <div id="score" style="text-align: center; font-size: 50px;"> score: 0</div>
+  <div id="score" style="text-align: center; font-size: 50px;"> 0</div>
   <!-- canvas is for rendering images -->
   <canvas id="screenDisplay" width="500" height="550" style="text-align: center;"></canvas>
   <style>
@@ -18,7 +18,7 @@
 
     #score {
       position: absolute;
-      color: chocolate;
+      color: green;
       size: 50px;
       top: 13%;
       left: 50%;
@@ -164,8 +164,8 @@
     }
 
     function drawFood() {
-      screenCTX.fillStyle = 'blue';
-      screenCTX.strokestyle = 'blue';
+      screenCTX.fillStyle = 'red';
+      screenCTX.strokestyle = 'red';
       screenCTX.fillRect(food_x, food_y, 10, 10);
       screenCTX.strokeRect(food_x, food_y, 10, 10)
     }
