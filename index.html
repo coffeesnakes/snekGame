@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head> el sneko </head>
-
+<head>  </head>
+<h1 style="text-align: center;"> el sneko </h1>
 <body>
   <!-- canvas is for rendering images -->
-  <canvas id="screenDisplay" width="500" height="550"></canvas>
+  <canvas id="screenDisplay" width="500" height="550" style="text-align: center;"></canvas>
 <style>
   #screenDisplay {
     position: absolute;
@@ -49,13 +49,15 @@
       screenCTX.strokestyle = 'lightgreen';
       screenCTX.fillRect(chonk.x, chonk.y, 10, 10);
       screenCTX.strokeRect(chonk.x, chonk.y, 10, 10)
-      console.log(chonk.x)
     }
     // loops over snake and then utilizes draw function to create chonks(cells)
     function drawSnek () {
       snake.forEach(drawSnekChonk);
     }
     function main() {
+
+      if (enderGame()) return;
+
        setTimeout(function onTick() {
         newCanvas();
         move_snake();
@@ -105,6 +107,17 @@
       dy = 10;
     }
   };
+
+  function enderGame() {
+    for (let i = 4; i < snake.length; i++) {
+      const collision = (snake[i].x === snake[0].x && snake[i].y === snake[0].y)
+    }
+    const hitLeftWall = snake[0].x < 0;
+    const hitRightWall = snake[0].x > screen.width - 10;
+    const hitTopWall = snake[0].y < 0;
+    const hitBottomWall = snake[0].y > screen.height - 10;
+    return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall
+  }
 
   </script>
 </body>
